@@ -1,0 +1,22 @@
+.grey-container {
+  border-radius: 5px;
+  background: #f2f2f2;
+  padding: 20px;
+}
+
+.grey-container-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grey-container-left {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 1199px) {
+  .grey-container {
+    padding: 10px;
+  }
+}

@@ -1,0 +1,21 @@
+.form-label {
+  display: block;
+  color: #000;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 1199px) {
+  .form-label {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+}
+
+@media (max-width: 991px) {
+  .form-label {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+}

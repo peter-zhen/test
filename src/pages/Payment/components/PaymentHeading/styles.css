@@ -1,0 +1,69 @@
+.payment-heading-container h1 {
+  font-size: 24px;
+  color: #3880ff;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.payment-heading-container span {
+  position: relative;
+  color: #000;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.payment-heading-container span::after {
+  content: "";
+  background-color: #3880ff;
+  top: 100%;
+  right: 0;
+  width: 70%;
+  height: 4px;
+  position: absolute;
+  border-radius: 5px;
+}
+
+@media (max-width: 1199px) {
+  .payment-heading-container h1 {
+    font-size: 20px;
+    gap: 15px;
+  }
+
+  .payment-heading-container span {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 991px) {
+  .payment-heading-container h1 {
+    font-size: 16px;
+    gap: 10px;
+  }
+
+  .payment-heading-container span {
+    font-size: 25px;
+  }
+
+  .payment-heading-container span::after {
+    top: 110%;
+  }
+}
+
+@media (max-width: 575px) {
+  .payment-heading-container h1 {
+    font-size: 15px;
+  }
+
+  .payment-heading-container span::after {
+    height: 3px;
+  }
+
+  .payment-heading-container span {
+    font-size: 20px;
+  }
+}

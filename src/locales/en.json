@@ -1,0 +1,19 @@
+{
+    "site_name":"Donate",
+    "button":"Donate",
+    "recharge":"Donate",
+    "top_this_payment":"This donation",
+    "top_enter_qty":"Enter donation amount",
+    "quick_payments_text":"Quick Donations",
+    "tip":"Due to serious risk control in domestic channels, only TRC20/ERC20/BEP20/KIP20 chains can be used. Currently, there is only USDT official channel, please transfer to the corresponding wallet for donation!",
+    "message":"Please select your donation wallet Current Trc-20 (Tron Chain)",
+    "channel":"channel",
+    "aisle":"aisle",
+    "preferred":"preferred",
+    "ouyi":"Ouyi",
+    "okex":"okex",
+    "okayText":"Okay",
+    "cancelText":"Cancel",
+    "alertHeader":"The current website requests to open wallet for donation",
+    "alert_wallet":"Please input the donation amount and select wallet!"
+}

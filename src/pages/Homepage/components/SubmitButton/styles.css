@@ -1,0 +1,18 @@
+.submit-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.submit-button {
+  padding: 11px 30px;
+  width: 40%;
+  font-size: 24px;
+}
+
+@media (max-width: 575px) {
+  .submit-button {
+    padding: 8px 30px;
+    width: 60%;
+  }
+}

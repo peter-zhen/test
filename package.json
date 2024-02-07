@@ -1,0 +1,81 @@
+{
+  "name": "RechargePage",
+  "version": "1.0.0.0",
+  "private": true,
+  "homepage": ".",
+  "license": " ISC License",
+  "description": "Recharge: Quick payment channel",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=6.0.0"
+  },
+  "overrides": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^13.3.0",
+    "@tronweb3/tronwallet-adapters": "^1.1.8",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^12.19.15",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@types/react-router": "^5.1.11",
+    "@types/react-router-dom": "^5.1.7",
+    "@web3modal/wagmi": "^3.5.7",
+    "bs58": "^5.0.0",
+    "clsx": "^2.1.0",
+    "firebase": "^10.5.2",
+    "i18next": "^23.6.0",
+    "i18next-browser-languagedetector": "^7.1.0",
+    "i18next-http-backend": "^2.3.0",
+    "ionicons": "^7.0.0",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-ga4": "^2.1.0",
+    "react-i18next": "^13.3.1",
+    "react-router": "^6.21.3",
+    "react-router-dom": "^6.21.3",
+    "react-scripts": "^5.0.0",
+    "react-toastify": "^10.0.4",
+    "tronweb": "^5.3.1",
+    "viem": "^1.21.4",
+    "wagmi": "^1.4.2",
+    "web-vitals": "^0.2.4",
+    "web3": "^4.2.2",
+    "workbox-core": "^5.1.4",
+    "workbox-expiration": "^5.1.4",
+    "workbox-precaching": "^5.1.4",
+    "workbox-routing": "^5.1.4",
+    "workbox-strategies": "^5.1.4"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@typescript-eslint/eslint-plugin": "^5.59.2",
+    "@typescript-eslint/parser": "^5.59.2",
+    "eslint": "^8.35.0",
+    "eslint-plugin-react": "^7.32.2",
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext .ts,.tsx src"
+  },
+  "browserslist": [
+    "Chrome >=79",
+    "ChromeAndroid >=79",
+    "Firefox >=70",
+    "Edge >=79",
+    "Safari >=14",
+    "iOS >=14"
+  ],
+  "author": {
+    "name": "Sachin Suthar",
+    "email": "sachin@3elixir.com",
+    "url": "https://sachin.3elixir.com"
+  }
+}

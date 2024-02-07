@@ -1,0 +1,19 @@
+{
+    "site_name": "用户捐赠",
+    "button": "捐赠",
+    "recharge": "用户捐赠",
+    "top_this_payment": "本次捐赠",
+    "top_enter_qty": "输入捐赠金额",
+    "quick_payments_text": "快捷捐赠",
+    "tip": "因国内渠道风控严重，仅限使用TRC20/ERC20/BEP20/KIP20链，目前只有USDT官方通道，请针对相应钱包进行转账捐赠!",
+    "message": "请选择您的捐赠钱包 当前Trc-20（波场链）",
+    "channel": "渠道",
+    "aisle": "走道",
+    "preferred": "首选",
+    "ouyi": "欧易",
+    "okex": "欧易",
+    "okayText": "好的",
+    "cancelText": "取消",
+    "alertHeader": "当前网站请求打开钱包进行捐赠",
+    "alert_wallet": "请输入捐赠金额并选择钱包"
+}

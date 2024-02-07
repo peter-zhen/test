@@ -1,0 +1,31 @@
+.calculate-payment-input {
+  border-radius: 8px;
+  height: 42px;
+  padding: 0 6px 0 6px;
+}
+
+.calculate-payment-text {
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+  margin-right: 30px;
+}
+
+.calculate-payment-input-text {
+  color: #0009;
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+@media (max-width: 1199px) {
+  .calculate-payment-text {
+    font-size: 14px;
+    margin-right: 15px;
+  }
+
+  .calculate-payment-input-text {
+    font-size: 14px;
+    margin-left: 5px;
+  }
+}

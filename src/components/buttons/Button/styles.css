@@ -1,0 +1,43 @@
+.custom-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  line-height: 1;
+  text-transform: none;
+  border: 0;
+  cursor: pointer;
+  padding: 9px 38px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.custom-button-fullWidth {
+  width: 100%;
+}
+
+.contained {
+  background: #3880ff;
+  border: 1px solid #3880ff;
+  color: #fff;
+}
+
+.outline {
+  background: #fff;
+  border: 1px solid #3880ff;
+  color: #000;
+}
+
+.danger {
+  background: #ff3853;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.custom-button-loading {
+  background-color: #bebebe;
+  border: 1px solid #bebebe;
+  pointer-events: none;
+}

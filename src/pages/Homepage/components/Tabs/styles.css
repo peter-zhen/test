@@ -1,0 +1,29 @@
+.payment-btn-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.payment-btn {
+  width: 30%;
+}
+
+.payment-btn img {
+  border-radius: 50%;
+  height: 28px;
+  margin: 0;
+  width: 28px;
+}
+
+@media (max-width: 575px) {
+  .payment-btn-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .payment-btn {
+    width: 50%;
+  }
+}

@@ -1,0 +1,25 @@
+.payment-adornment-input {
+  position: relative;
+}
+
+.payment-adornment {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  top: 50%;
+  right: 7%;
+  transform: translateY(-50%);
+}
+
+.payment-adornment img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.payment-adornment span {
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+}

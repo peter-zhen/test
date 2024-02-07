@@ -1,0 +1,125 @@
+.payment-method-section {
+  border-radius: 5px;
+  border: 0.5px solid rgba(0, 0, 0, 0.2);
+  background: #fff;
+  padding: 15px;
+}
+
+.payment-method-section .payment-method:first-child {
+  padding: 5px 10px 20px;
+}
+
+.payment-method-section .payment-method:last-child {
+  padding: 20px 10px 5px;
+}
+
+.payment-method {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 10px;
+}
+
+.payment-method img {
+  width: 50px;
+  object-fit: contain;
+  height: 50px;
+}
+
+.payment-method p {
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.payment-method p div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.payment-method span {
+  color: #faae07;
+  font-family: Outfit;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.payment-method-input {
+  position: relative;
+}
+
+.payment-method-input input {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+  cursor: pointer;
+}
+
+.radio-btn-inner {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid #d9d9d9;
+  position: relative;
+  opacity: 1;
+}
+
+.payment-method-input input:checked + .radio-btn-inner::after {
+  opacity: 1;
+}
+
+.payment-method-input input:checked + .radio-btn-inner {
+  border: none;
+}
+
+.payment-method-input label {
+  margin: 0;
+}
+
+.radio-btn-inner::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url(../../../../assets/svgs/check.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.payment-method-leftside-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.payment-method-title-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.apply-class {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 575px) {
+  .payment-method-section {
+    padding: 4px;
+  }
+}

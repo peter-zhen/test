@@ -1,0 +1,12 @@
+.payment-info-text {
+  margin: 30px 0;
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+@media (max-width: 1199px) {
+  .payment-info-text {
+    margin: 15px 0;
+  }
+}
