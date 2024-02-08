@@ -9,6 +9,7 @@ import { ConnectionTypeProvider } from './providers/ConnectionTypeProvider'
 
 import PaymentPage from './pages/Payment/PaymentPage'
 import HomePage from './pages/Homepage/HomePage'
+////11111
 const App: React.FC = () => {
   return (
     <Router>
