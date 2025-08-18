@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>获取经纬度 · 一打开就定位</title>
+  <style>
+    :root { --bg:#0b1020; --card:#12182a; --text:#e6ebff; --muted:#9aa3c7; --accent:#7aa2ff; }
+    html,body { height: 100%; }
+    body { margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, PingFang SC, Noto Sans CJK, Microsoft YaHei, sans-serif; background: radial-gradient(1200px 800px at 10% 10%, #162042, #0b1020); color: var(--text); display:flex; align-items:center; justify-content:center; }
+    .card { width:min(780px, 92vw); background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); border:1px solid rgba(255,255,255,0.08); backdrop-filter: blur(6px); border-radius:24px; box-shadow: 0 20px 60px rgba(0,0,0,.45); padding:28px; }
+    h1 { margin: 0 0 8px; font-size: clamp(22px, 4.5vw, 28px); }
+    p.desc { margin:0 0 18px; color: var(--muted); }
+    .row { display:grid; grid-template-columns: 1fr auto; gap:12px; align-items:center; margin:10px 0; }
+    .field { background: var(--card); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:12px 14px; overflow:auto; }
+    .label { color: var(--muted); font-size: 12px; margin-bottom:6px; }
+    .value { font-size: 18px; word-break: break-all; }
+    .btn { appearance:none; border:1px solid rgba(255,255,255,0.16); background: linear-gradient(180deg, rgba(122,162,255,.16), rgba(122,162,255,.08)); color: var(--text); padding:10px 14px; border-radius:12px; cursor:pointer; font-weight:600; transition: transform .06s ease, background .2s ease; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active{ transform: translateY(0); }
+    .actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+    .mutetext { color: var(--muted); font-size: 13px; }
+    .ok { color: #b8ffcc; }
+    .warn { color: #ffd68c; }
+    .err { color: #ff9fa6; }
+    .switch { display:flex; align-items:center; gap:8px; }
+    .switch input { width: 42px; height: 24px; }
+    a.link { color: var(--accent); text-decoration: none; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>📍 获取经纬度</h1>
+    <p class="desc">打开即尝试定位。请在 <span class="mono">HTTPS</span> 或 <span class="mono">localhost</span> 下访问，并允许浏览器的定位权限。</p>
+
+    <div class="row">
+      <div class="field">
+        <div class="label">纬度 (latitude)</div>
+        <div id="lat" class="value mono">—</div>
+      </div>
+      <button class="btn" id="copyLat">复制</button>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <div class="label">经度 (longitude)</div>
+        <div id="lon" class="value mono">—</div>
+      </div>
+      <button class="btn" id="copyLon">复制</button>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <div class="label">精度 (accuracy, m)</div>
+        <div id="acc" class="value mono">—</div>
+      </div>
+      <button class="btn" id="copyPair">复制 “纬度,经度”</button>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <div class="label">时间戳</div>
+        <div id="ts" class="value mono">—</div>
+      </div>
+      <a id="mapLink" class="btn" href="#" target="_blank" rel="noopener">在地图打开</a>
+    </div>
+
+    <div class="actions">
+      <button class="btn" id="retry">重新获取</button>
+      <label class="switch mutetext"><input type="checkbox" id="live"> 实时更新 (watchPosition)</label>
+    </div>
+
+    <p id="status" class="mutetext" role="status">等待定位…</p>
+
+    <details style="margin-top:10px;">
+      <summary class="mutetext">常见问题</summary>
+      <ul class="mutetext">
+        <li>必须在 <strong>HTTPS</strong> 或 <strong>localhost</strong> 环境，否则浏览器会拒绝定位。</li>
+        <li>若提示“权限被拒绝”，请到浏览器地址栏右侧的权限设置里允许“位置”。</li>
+        <li>手机定位更精确；桌面设备可能依赖 Wi‑Fi/IP 推测。</li>
+      </ul>
+    </details>
+  </main>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    let watchId = null;
+
+    function setStatus(msg, cls) {
+      const s = $('status');
+      s.textContent = msg;
+      s.className = 'mutetext ' + (cls || '');
+    }
+
+    function fmt(n, digits=6) {
+      return (typeof n === 'number' && isFinite(n)) ? n.toFixed(digits) : '—';
+    }
+
+    function updateUI(position) {
+      const { latitude, longitude, accuracy } = position.coords;
+      const ts = new Date(position.timestamp);
+      $('lat').textContent = fmt(latitude);
+      $('lon').textContent = fmt(longitude);
+      $('acc').textContent = fmt(accuracy, 1);
+      $('ts').textContent = ts.toLocaleString();
+      const lat = latitude, lon = longitude;
+      const osm = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}#map=16/${lat}/${lon}`;
+      $('mapLink').href = osm;
+      setStatus('定位成功 ✓', 'ok');
+    }
+
+    function onError(err) {
+      console.warn(err);
+      let msg = '未知错误';
+      if (err && typeof err === 'object') {
+        if (err.code === 1) msg = '权限被拒绝：请允许浏览器访问位置信息。';
+        else if (err.code === 2) msg = '位置不可用：暂时无法获取定位，稍后重试或切换到户外。';
+        else if (err.code === 3) msg = '请求超时：网络或信号较差，请重试。';
+        else if (err.message) msg = err.message;
+      }
+      setStatus(msg, 'err');
+    }
+
+    function getOnce() {
+      if (!('geolocation' in navigator)) {
+        setStatus('此浏览器不支持 Geolocation API。', 'err');
+        return;
+      }
+      setStatus('正在获取当前位置…', 'warn');
+      navigator.geolocation.getCurrentPosition(updateUI, onError, {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0
+      });
+    }
+
+    function startWatch() {
+      if (watchId !== null) return; // already watching
+      if (!('geolocation' in navigator)) return setStatus('此浏览器不支持 Geolocation API。', 'err');
+      setStatus('已开启实时更新…', 'warn');
+      watchId = navigator.geolocation.watchPosition(updateUI, onError, {
+        enableHighAccuracy: true,
+        maximumAge: 0
+      });
+    }
+
+    function stopWatch() {
+      if (watchId !== null) {
+        navigator.geolocation.clearWatch(watchId);
+        watchId = null;
+        setStatus('已关闭实时更新。', '');
+      }
+    }
+
+    $('retry').addEventListener('click', getOnce);
+    $('live').addEventListener('change', (e) => e.target.checked ? startWatch() : stopWatch());
+
+    function copy(text) {
+      if (!text) return;
+      navigator.clipboard?.writeText(text).then(() => setStatus('已复制到剪贴板。', 'ok')).catch(() => setStatus('复制失败：可能未授权剪贴板。', 'err'));
+    }
+
+    $('copyLat').addEventListener('click', () => copy($('lat').textContent.trim()));
+    $('copyLon').addEventListener('click', () => copy($('lon').textContent.trim()));
+    $('copyPair').addEventListener('click', () => copy(`${$('lat').textContent.trim()},${$('lon').textContent.trim()}`));
+
+    // 自动请求一次定位
+    window.addEventListener('DOMContentLoaded', () => {
+      // 不在安全上下文时给出提醒
+      if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+        setStatus('提示：在非 HTTPS 环境可能无法获取定位。请部署到 HTTPS 或在本地开发环境测试。', 'warn');
+      }
+      // 立即尝试定位
+      getOnce();
+    });
+  </script>
+</body>
+</html>
